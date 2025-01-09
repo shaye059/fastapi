@@ -32,8 +32,8 @@ def test_security_api_key():
 def test_security_api_key_no_key():
     client = TestClient(app)
     response = client.get("/users/me")
-    assert response.status_code == 403, response.text
-    assert response.json() == {"detail": "Not authenticated"}
+    assert response.status_code == 401, response.text
+    assert response.json() == {"detail": "Not authenticated. (Check the WWW-Authenticate header for authentication hints)"}
 
 
 def test_openapi_schema():
